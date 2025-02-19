@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 19:00:42 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:21:55 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	is_map_ber(char *input)
 	return (EXIT_SUCCESS);
 }
 
-//Gnl->split
 static int	is_map_valid(t_map *map, char *input)
 {
 	int		fd;
@@ -54,14 +53,12 @@ static int	is_map_valid(t_map *map, char *input)
 		tmp = get_next_line(fd);
 	}
 	close(fd);
-/* 	line = ft_strjoin_g(line, "\n");
- */	map->map = ft_split(line, '\n');
+	map->map = ft_split(line, '\n');
 	map->map_save = ft_split(line, '\n');
 	free (line);
 	return (EXIT_SUCCESS);
 }
 
-//si hay fallos probar >= en alto y ancho, primer if
 void	flood_fill(t_map *map, int y, int x)
 {
 	if (y < 0 || x < 0 || y >= map->map_height || x >= map->map_width)

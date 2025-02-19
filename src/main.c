@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 18:04:04 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/19 20:07:15 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ void image_init(t_map *map)
 void	map_texture_charge(t_map *map, int y, int x)
 {
 	if (map->map[y][x] == '1')
-		mlx_image_to_window(map->wind, map->img.wall_i, x * IMG_PXL, y * IMG_PXL);
+		mlx_image_to_window(map->wind, map->img.wall_i, x * IPXL, y * IPXL);
 	else if (map->map[y][x] == '0')
-		mlx_image_to_window(map->wind, map->img.tile_i, x * IMG_PXL, y * IMG_PXL);
+		mlx_image_to_window(map->wind, map->img.tile_i, x * IPXL, y * IPXL);
 	else if (map->map[y][x] == 'C')
-		mlx_image_to_window(map->wind, map->img.collect_i, x * IMG_PXL, y * IMG_PXL);
+		mlx_image_to_window(map->wind, map->img.collect_i, x * IPXL, y * IPXL);
 	else if (map->map[y][x] == 'P')
-		mlx_image_to_window(map->wind, map->img.player_i, x * IMG_PXL, y * IMG_PXL);
+		mlx_image_to_window(map->wind, map->img.player_i, x * IPXL, y * IPXL);
 	else
 	{
 		if (map->coin_c != 0)
-			mlx_image_to_window(map->wind, map->img.exit_c_i, x * IMG_PXL, y * IMG_PXL);
+			mlx_image_to_window(map->wind, map->img.exit_c_i, x * IPXL, y * IPXL);
 		else
-			mlx_image_to_window(map->wind, map->img.exit_o_i, x * IMG_PXL, y * IMG_PXL);
+			mlx_image_to_window(map->wind, map->img.exit_o_i, x * IPXL, y * IPXL);
 	}
 	if (map->map[y][x + 1])
 		map_texture_charge(map, y , x + 1);
@@ -60,9 +60,6 @@ void	map_texture_charge(t_map *map, int y, int x)
 	}
 }
 
-//PROBLEMA: como cargo imagenes arriba de imagenes empieza a ir lento el programa en algun momento, upsis.
-//Buscar forma de borrar las img antiguas en el proceso
-
 void	move_player_y(t_map *map, int y, int x, char dir)
 {
 	if (dir == 'w' && map->map[y - 1][x] != '1')
@@ -70,10 +67,7 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 		if (map->map[y - 1][x] == 'C')
 			map->coin_c -= 1;
 		if (map->map[y - 1][x] == 'E' && map->coin_c == 0)
-		{
 			mlx_close_window(map->wind);
-			return ;
-		}
 		map->player.y -= 1;
 		map->map[y - 1][x] = 'P';
 		map->map[y][x] = '0';
@@ -83,6 +77,8 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 	{
 		if (map->map[y + 1][x] == 'C')
 			map->coin_c -= 1;
+		if (map->map[y + 1][x] == 'E' && map->coin_c == 0)
+			mlx_close_window(map->wind);
 		map->player.y += 1;
 		map->map[y + 1][x] = 'P';
 		map->map[y][x] = '0';
@@ -96,6 +92,8 @@ void	move_player_x(t_map *map, int y, int x, char dir)
 	{
 		if (map->map[y][x - 1] == 'C')
 			map->coin_c -= 1;
+		if (map->map[y][x - 1] == 'E' && map->coin_c == 0)
+			mlx_close_window(map->wind);
 		map->player.x -= 1;
 		map->map[y][x - 1] = 'P';
 		map->map[y][x] = '0';
@@ -105,6 +103,8 @@ void	move_player_x(t_map *map, int y, int x, char dir)
 	{
 		if (map->map[y][x + 1] == 'C')
 			map->coin_c -= 1;
+		if (map->map[y][x + 1] == 'E' && map->coin_c == 0)
+			mlx_close_window(map->wind);
 		map->player.x += 1;
 		map->map[y][x + 1] = 'P';
 		map->map[y][x] = '0';
@@ -131,27 +131,16 @@ void	on_key_press(mlx_key_data_t keydata, void *param)
 
 int	init_window(t_map *map)
 {
-	map->wind = mlx_init(IMG_PXL * map->map_width, IMG_PXL * (map->map_height), "so_long", false);
+	map->wind = mlx_init(IPXL * map->map_width, IPXL * map->map_height, "so_long", false);
 	image_init(map);
 	map_texture_charge(map, 0, 0);
 	mlx_key_hook(map->wind, &on_key_press , map);
 	mlx_loop(map->wind);
 	return (0);
 }
-int	main(int argc, char **argv)
-{
-	t_map	*map;
 
-	if (argc != 2)
-		return (print_error("Please insert one argument, just one."));
-	map = ft_calloc(1, sizeof(t_map));
-	if (map_control(map, argv[1]) == EXIT_FAILURE)
-	{
-		free_all(map);
-		return (EXIT_FAILURE);
-	}
-	init_window(map);
-	free_all(map);
+void	map_img_ter(t_map *map)
+{
 	mlx_delete_image(map->wind, map->img.collect_i);
 	mlx_delete_image(map->wind, map->img.wall_i);
 	mlx_delete_image(map->wind, map->img.exit_c_i);
@@ -159,10 +148,36 @@ int	main(int argc, char **argv)
 	mlx_delete_image(map->wind, map->img.player_i);
 	mlx_delete_image(map->wind, map->img.tile_i);
 	mlx_terminate(map->wind);
+}
+
+int	main(int argc, char **argv)
+{
+	t_map	*map;
+
+	if (argc != 2)
+		return (print_error("Please insert one argument, just one."));
+	map = ft_calloc(1, sizeof(t_map));
+	if (!map)
+		return (print_error("Malloc failed."));
+	if (map_control(map, argv[1]) == EXIT_FAILURE)
+	{
+		free_all(map);
+		return (EXIT_FAILURE);
+	}
+	init_window(map);
+	map_img_ter(map);
+	free_all(map);
 	return (EXIT_SUCCESS);
 }
 
-//Checkear por 0 o otros caracteres en las paredes, rodeados por paredes
+/* 
+COSAS A AGREGAR:
+contador de movimientos
+optimizacion de la carga de mapa con cada movimiento
+checkeo de que existan las texturas
+control de 0 en el borde rodeados de paredes
+acortar lineas muy largas
+*/
 
 /* 
 mlx_init para inicializar la ventana

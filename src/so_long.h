@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 17:50:04 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:50:31 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,7 @@
 # include <stdio.h>
 # include <string.h>
 
-# define UP      13
-# define DOWN    1
-# define LEFT    0
-# define RIGHT   2
-# define ESC     53
-# define IMG_PXL 50
+# define IPXL 50
 
 typedef struct s_player
 {
