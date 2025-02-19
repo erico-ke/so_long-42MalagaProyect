@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 16:57:37 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:04:04 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void image_init(t_map *map)
 	map->img.exit_o_i = mlx_texture_to_image(map->wind, map->img.exit_o);
 	map->img.player_i = mlx_texture_to_image(map->wind, map->img.player);
 	map->img.tile_i = mlx_texture_to_image(map->wind, map->img.tile);
+	mlx_delete_texture(map->img.collectible);
+	mlx_delete_texture(map->img.wall);
+	mlx_delete_texture(map->img.exit_c);
+	mlx_delete_texture(map->img.exit_o);
+	mlx_delete_texture(map->img.player);
+	mlx_delete_texture(map->img.tile);
 }
 
 void	map_texture_charge(t_map *map, int y, int x)
@@ -63,6 +69,11 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 	{
 		if (map->map[y - 1][x] == 'C')
 			map->coin_c -= 1;
+		if (map->map[y - 1][x] == 'E' && map->coin_c == 0)
+		{
+			mlx_close_window(map->wind);
+			return ;
+		}
 		map->player.y -= 1;
 		map->map[y - 1][x] = 'P';
 		map->map[y][x] = '0';
@@ -120,7 +131,7 @@ void	on_key_press(mlx_key_data_t keydata, void *param)
 
 int	init_window(t_map *map)
 {
-	map->wind = mlx_init(IMG_PXL * map->map_width, IMG_PXL * map->map_height, "so_long", false);
+	map->wind = mlx_init(IMG_PXL * map->map_width, IMG_PXL * (map->map_height), "so_long", false);
 	image_init(map);
 	map_texture_charge(map, 0, 0);
 	mlx_key_hook(map->wind, &on_key_press , map);
@@ -141,9 +152,17 @@ int	main(int argc, char **argv)
 	}
 	init_window(map);
 	free_all(map);
+	mlx_delete_image(map->wind, map->img.collect_i);
+	mlx_delete_image(map->wind, map->img.wall_i);
+	mlx_delete_image(map->wind, map->img.exit_c_i);
+	mlx_delete_image(map->wind, map->img.exit_o_i);
+	mlx_delete_image(map->wind, map->img.player_i);
+	mlx_delete_image(map->wind, map->img.tile_i);
+	mlx_terminate(map->wind);
 	return (EXIT_SUCCESS);
 }
 
+//Checkear por 0 o otros caracteres en las paredes, rodeados por paredes
 
 /* 
 mlx_init para inicializar la ventana

@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/07 18:16:37 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:00:42 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ static int	is_map_valid(t_map *map, char *input)
 	char	*tmp;
 
 	fd = open(input, O_RDONLY);
+	line = NULL;
 	if (fd < 0)
 		return (print_error("Map open error"));
-	line = get_next_line(fd);
-	if (!line)
+	tmp = get_next_line(fd);
+	if (!tmp)
 		return (print_error("Map read error"));
-	while (line != NULL)
+	while (tmp != NULL)
 	{
-		tmp = get_next_line(fd);
-		if (tmp == NULL)
-			break ;
 		line = ft_strjoin_g(line, tmp);
 		free(tmp);
+		tmp = get_next_line(fd);
 	}
 	close(fd);
-	map->map = ft_split(line, '\n');
+/* 	line = ft_strjoin_g(line, "\n");
+ */	map->map = ft_split(line, '\n');
 	map->map_save = ft_split(line, '\n');
 	free (line);
 	return (EXIT_SUCCESS);
@@ -64,7 +64,7 @@ static int	is_map_valid(t_map *map, char *input)
 //si hay fallos probar >= en alto y ancho, primer if
 void	flood_fill(t_map *map, int y, int x)
 {
-	if (y < 0 || x < 0 || y > map->map_height || x > map->map_width)
+	if (y < 0 || x < 0 || y >= map->map_height || x >= map->map_width)
 	{
 		map->null_check += 1;
 		return ;
