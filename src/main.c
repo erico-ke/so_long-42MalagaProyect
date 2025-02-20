@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 20:07:15 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:58:30 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	map_texture_charge(t_map *map, int y, int x)
 		x = 0;
 		map_texture_charge(map, y + 1, x);
 	}
+}
+
+void	a_move_map_charge(t_map map, int yi, int xi, int ye, int xe)
+{
+	
 }
 
 void	move_player_y(t_map *map, int y, int x, char dir)
@@ -131,7 +136,7 @@ void	on_key_press(mlx_key_data_t keydata, void *param)
 
 int	init_window(t_map *map)
 {
-	map->wind = mlx_init(IPXL * map->map_width, IPXL * map->map_height, "so_long", false);
+	map->wind = mlx_init(IPXL * map->width, IPXL * map->height, "so_long", 0);
 	image_init(map);
 	map_texture_charge(map, 0, 0);
 	mlx_key_hook(map->wind, &on_key_press , map);
@@ -172,10 +177,10 @@ int	main(int argc, char **argv)
 
 /* 
 COSAS A AGREGAR:
-contador de movimientos
 optimizacion de la carga de mapa con cada movimiento
 checkeo de que existan las texturas
 control de 0 en el borde rodeados de paredes
+contador de movimientos
 acortar lineas muy largas
 */
 

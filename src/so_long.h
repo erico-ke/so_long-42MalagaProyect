@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 19:50:31 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:57:26 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_map
 	int			coin_c;
 	int			player_num;
 	int			player_c;
-	int			map_height;
-	int			map_width;
+	int			height;
+	int			width;
 	int			null_check;
 	mlx_t		*wind;
 }	t_map;

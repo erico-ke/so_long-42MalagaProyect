@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:22:04 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/19 18:07:18 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:57:57 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	set_map_dimensions(t_map *map)
 	while (map->map[i++] != NULL)
 		if (map->map[i] && ft_strlen(map->map[i]) != j)
 			map->null_check++;
-	map->map_height = i - 1;
-	map->map_width = j;
+	map->height = i - 1;
+	map->width = j;
 }
 
 void	map_list_init(t_map *map)
