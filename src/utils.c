@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:22:04 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 13:57:57 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:50:32 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	map_list_init(t_map *map)
 	map->exit = 0;
 	map->exit_c = 0;
 	map->moves = 0;
+	ft_printf("Movements made hola: %d\n", 1, map->moves);
 	map->coin = 0;
 	map->coin_c = 0;
 	map->null_check = 0;

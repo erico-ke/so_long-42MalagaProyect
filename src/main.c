@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 13:58:30 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:49:25 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void	map_texture_charge(t_map *map, int y, int x)
 	else
 	{
 		if (map->coin_c != 0)
-			mlx_image_to_window(map->wind, map->img.exit_c_i, x * IPXL, y * IPXL);
+			mlx_image_to_window(map->wind, map->img.exit_c_i, x * IPXL,
+				y * IPXL);
 		else
-			mlx_image_to_window(map->wind, map->img.exit_o_i, x * IPXL, y * IPXL);
+			mlx_image_to_window(map->wind, map->img.exit_o_i, x * IPXL,
+				y * IPXL);
 	}
 	if (map->map[y][x + 1])
 		map_texture_charge(map, y , x + 1);
@@ -60,9 +62,12 @@ void	map_texture_charge(t_map *map, int y, int x)
 	}
 }
 
-void	a_move_map_charge(t_map map, int yi, int xi, int ye, int xe)
+void	a_move_map_charge(t_map *map, int yi, int xi, int ye, int xe)
 {
-	
+	mlx_image_to_window(map->wind, map->img.tile_i, xi * IPXL, yi * IPXL);
+	mlx_image_to_window(map->wind, map->img.player_i, xe * IPXL, ye * IPXL);
+	map->moves++;
+	ft_printf("Movements made: %d\n", 1, map->moves);
 }
 
 void	move_player_y(t_map *map, int y, int x, char dir)
@@ -76,7 +81,7 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 		map->player.y -= 1;
 		map->map[y - 1][x] = 'P';
 		map->map[y][x] = '0';
-		map_texture_charge(map, 0, 0);
+		a_move_map_charge(map, y, x, y - 1, x);
 	}
 	else if (dir == 's' && map->map[y + 1][x] != '1')
 	{
@@ -87,7 +92,7 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 		map->player.y += 1;
 		map->map[y + 1][x] = 'P';
 		map->map[y][x] = '0';
-		map_texture_charge(map, 0, 0);
+		a_move_map_charge(map, y, x, y + 1, x);
 	}
 }
 
@@ -102,7 +107,7 @@ void	move_player_x(t_map *map, int y, int x, char dir)
 		map->player.x -= 1;
 		map->map[y][x - 1] = 'P';
 		map->map[y][x] = '0';
-		map_texture_charge(map, 0, 0);
+		a_move_map_charge(map, y, x, y, x - 1);
 	}
 	else if (dir == 'd' && map->map[y][x + 1] != '1')
 	{
@@ -113,7 +118,7 @@ void	move_player_x(t_map *map, int y, int x, char dir)
 		map->player.x += 1;
 		map->map[y][x + 1] = 'P';
 		map->map[y][x] = '0';
-		map_texture_charge(map, 0, 0);
+		a_move_map_charge(map, y, x, y, x + 1);
 	}
 }
 
@@ -177,10 +182,8 @@ int	main(int argc, char **argv)
 
 /* 
 COSAS A AGREGAR:
-optimizacion de la carga de mapa con cada movimiento
 checkeo de que existan las texturas
 control de 0 en el borde rodeados de paredes
-contador de movimientos
 acortar lineas muy largas
 */
 

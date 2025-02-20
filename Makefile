@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 MLX42_PATH = libs/MLX42

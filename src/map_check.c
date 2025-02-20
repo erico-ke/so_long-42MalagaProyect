@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 13:57:48 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:06:04 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,22 @@ void	flood_fill(t_map *map, int y, int x)
 	flood_fill(map, y, x + 1);
 	flood_fill(map, y - 1, x);
 	flood_fill(map, y, x - 1);
+}
+
+static void	map_border_check(t_map *map)
+{
+	int	i;
+	int	j;
+	int len;
+	
+	i = 0;
+	j = ft_strlen(map->map[i]);
+	len = 0;
+	//len = ft_strlen(map->map);
+	while (map->map[i])
+	{
+		if (len !=)
+	}
 }
 
 int	map_control(t_map *map, char *map_input)
