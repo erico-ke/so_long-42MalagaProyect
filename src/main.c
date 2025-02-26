@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 15:49:25 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:37:41 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	map_texture_charge(t_map *map, int y, int x)
 	}
 }
 
-void	a_move_map_charge(t_map *map, int yi, int xi, int ye, int xe)
+void	a_move_map_charge(t_map *map, int ye, int xe)
 {
-	mlx_image_to_window(map->wind, map->img.tile_i, xi * IPXL, yi * IPXL);
+	mlx_image_to_window(map->wind, map->img.tile_i, map->player.x * IPXL, map->player.y * IPXL);
 	mlx_image_to_window(map->wind, map->img.player_i, xe * IPXL, ye * IPXL);
 	map->moves++;
 	ft_printf("Movements made: %d\n", 1, map->moves);
@@ -81,7 +81,7 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 		map->player.y -= 1;
 		map->map[y - 1][x] = 'P';
 		map->map[y][x] = '0';
-		a_move_map_charge(map, y, x, y - 1, x);
+		a_move_map_charge(map, y - 1, x);
 	}
 	else if (dir == 's' && map->map[y + 1][x] != '1')
 	{
@@ -92,7 +92,7 @@ void	move_player_y(t_map *map, int y, int x, char dir)
 		map->player.y += 1;
 		map->map[y + 1][x] = 'P';
 		map->map[y][x] = '0';
-		a_move_map_charge(map, y, x, y + 1, x);
+		a_move_map_charge(map, y + 1, x);
 	}
 }
 
@@ -107,7 +107,7 @@ void	move_player_x(t_map *map, int y, int x, char dir)
 		map->player.x -= 1;
 		map->map[y][x - 1] = 'P';
 		map->map[y][x] = '0';
-		a_move_map_charge(map, y, x, y, x - 1);
+		a_move_map_charge(map, y, x - 1);
 	}
 	else if (dir == 'd' && map->map[y][x + 1] != '1')
 	{
@@ -118,7 +118,7 @@ void	move_player_x(t_map *map, int y, int x, char dir)
 		map->player.x += 1;
 		map->map[y][x + 1] = 'P';
 		map->map[y][x] = '0';
-		a_move_map_charge(map, y, x, y, x + 1);
+		a_move_map_charge(map, y, x + 1);
 	}
 }
 
@@ -183,8 +183,8 @@ int	main(int argc, char **argv)
 /* 
 COSAS A AGREGAR:
 checkeo de que existan las texturas
-control de 0 en el borde rodeados de paredes
 acortar lineas muy largas
+que el player no se coma la salida...
 */
 
 /* 

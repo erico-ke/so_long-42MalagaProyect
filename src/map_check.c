@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 16:06:04 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:08:55 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,22 @@ static void	map_border_check(t_map *map)
 	i = 0;
 	j = ft_strlen(map->map[i]);
 	len = 0;
-	//len = ft_strlen(map->map);
-	while (map->map[i])
-	{
-		if (len !=)
-	}
+	while (map->map[len])
+		len++;
+	while (map->map[0][i] == '1' && map->map[0][i])
+		i++;
+	if (i != j)
+		map->null_check += 1;
+	i = 0;
+	while (map->map[i][0] == '1' && map->map[i ][j - 1] == '1' && i != len - 1)
+		i++;
+	if (i != len - 1)
+		map->null_check += 1;
+	len = 0;
+	while (map->map[i][len] == '1' && map->map[i][len])
+		len++;
+	if (len != j)
+		map->null_check += 1;	
 }
 
 int	map_control(t_map *map, char *map_input)
@@ -115,6 +126,7 @@ int	map_control(t_map *map, char *map_input)
 	if (!map->player.y || !map->player.x)
 		return (EXIT_FAILURE);
 	flood_fill(map, map->player.y, map->player.x);
+	map_border_check(map);
 	if (map->player_num != 1 || map->coin != map->coin_c || map->exit_c != 1
 		|| map->exit != 1 || map->null_check > 0 || map->player_c != 1)
 		return (print_error("Invalid map."));
