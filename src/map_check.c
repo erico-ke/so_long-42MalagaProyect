@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/26 16:08:55 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:20:21 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	flood_fill(t_map *map, int y, int x)
 	else if (map->map_save[y][x] == '*')
 		return ;
 	else if (map->map_save[y][x] == 'P')
-		map->player_num += 1;
+		map->p_num += 1;
 	else if (map->map_save[y][x] == 'C')
 		map->coin_c += 1;
 	else if (map->map_save[y][x] == 'E')
@@ -92,8 +92,8 @@ static void	map_border_check(t_map *map)
 {
 	int	i;
 	int	j;
-	int len;
-	
+	int	len;
+
 	i = 0;
 	j = ft_strlen(map->map[i]);
 	len = 0;
@@ -104,7 +104,7 @@ static void	map_border_check(t_map *map)
 	if (i != j)
 		map->null_check += 1;
 	i = 0;
-	while (map->map[i][0] == '1' && map->map[i ][j - 1] == '1' && i != len - 1)
+	while (map->map[i][0] == '1' && map->map[i][j - 1] == '1' && i != len - 1)
 		i++;
 	if (i != len - 1)
 		map->null_check += 1;
@@ -112,7 +112,7 @@ static void	map_border_check(t_map *map)
 	while (map->map[i][len] == '1' && map->map[i][len])
 		len++;
 	if (len != j)
-		map->null_check += 1;	
+		map->null_check += 1;
 }
 
 int	map_control(t_map *map, char *map_input)
@@ -123,12 +123,12 @@ int	map_control(t_map *map, char *map_input)
 		return (EXIT_FAILURE);
 	map_list_init(map);
 	self_map_read(map);
-	if (!map->player.y || !map->player.x)
+	if (!map->p.y || !map->p.x)
 		return (EXIT_FAILURE);
-	flood_fill(map, map->player.y, map->player.x);
+	flood_fill(map, map->p.y, map->p.x);
 	map_border_check(map);
-	if (map->player_num != 1 || map->coin != map->coin_c || map->exit_c != 1
-		|| map->exit != 1 || map->null_check > 0 || map->player_c != 1)
+	if (map->p_num != 1 || map->coin != map->coin_c || map->exit_c != 1
+		|| map->exit != 1 || map->null_check > 0 || map->p_c != 1)
 		return (print_error("Invalid map."));
 	if (map->coin < 1)
 		return (print_error("Invalid map."));

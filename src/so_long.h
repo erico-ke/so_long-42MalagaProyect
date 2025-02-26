@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 15:17:28 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:33:59 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <stdio.h>
 # include <string.h>
 
-# define IPXL 50
+# define PXL 50
 
-typedef struct s_player
+typedef struct s_p
 {
 	int	y;
 	int	x;
-}	t_player;
+}	t_p;
 
 typedef struct s_img
 {
@@ -33,14 +33,14 @@ typedef struct s_img
 	mlx_texture_t	*wall;
 	mlx_texture_t	*exit_c;
 	mlx_texture_t	*exit_o;
-	mlx_texture_t	*player;
+	mlx_texture_t	*p;
 	mlx_texture_t	*tile;
 	mlx_image_t		*collect_i;
 	mlx_image_t		*wall_i;
 	mlx_image_t		*exit_c_i;
 	mlx_image_t		*exit_o_i;
-	mlx_image_t		*player_i;
-	mlx_image_t		*tile_i;
+	mlx_image_t		*p_i;
+	mlx_image_t		*ti_i;
 }	t_img;
 
 typedef struct s_map
@@ -49,26 +49,33 @@ typedef struct s_map
 	char		**map_save;
 	int			moves;
 	t_img		img;
-	t_player	player;
+	t_p			p;
 	int			exit;
 	int			exit_c;
 	int			coin;
 	int			coin_c;
-	int			player_num;
-	int			player_c;
+	int			p_num;
+	int			p_c;
 	int			height;
 	int			width;
 	int			null_check;
 	mlx_t		*wind;
 }	t_map;
 
+int		main(int argc, char **argv);
+
 int		print_error(char *ret);
+void	the_freer(char	**free_me);
+void	free_all(t_map *map);
+
 int		map_control(t_map *map, char *map_input);
 void	flood_fill(t_map *map, int y, int x);
-void	the_freer(char	**free_me);
 int		self_map_read(t_map *map);
 void	map_list_init(t_map *map);
-void	free_all(t_map *map);
-int		main(int argc, char **argv);
+
+void	on_key_press(mlx_key_data_t keydata, void *param);
+void	map_img_ter(t_map *map);
+int		init_window(t_map *map);
+void	a_move_map_charge(t_map *m, int ye, int xe);
 
 #endif

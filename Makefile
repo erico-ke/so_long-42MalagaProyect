@@ -11,7 +11,7 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 HEADERS = -I ./libs -I $(MLX42_PATH)/include/MLX42 -I $(LIBFT_PATH)
 
-SRCS =	src/main.c src/utils.c src/error.c src/map_check.c
+SRCS =	src/main.c src/utils.c src/error.c src/map_check.c src/window.c src/player_movement.c
 
 OBJS = $(SRCS:$(SRCDIR)%.c=$(OBJDIR)%.o)
 SRCDIR = src/
