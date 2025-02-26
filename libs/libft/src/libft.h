@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:48:19 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/20 15:32:49 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:04:58 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 //printf
 
-int	ft_printf(char const *v_inputs, int fd, ...);
-int	ft_putchar_p_fd(char c, int fd);
-int	ft_putstr_p_fd(char *s, int fd);
-int	ft_putnbr_p_fd(int n, int fd);
-int	ft_putnbrfforuinput_fd(unsigned int n, int fd);
-int	ft_hexaprint(unsigned long long nbr, char c);
-int	ft_voidptrwrite(unsigned long long input);
+int		ft_printf(char const *v_inputs, int fd, ...);
+int		ft_putchar_p_fd(char c, int fd);
+int		ft_putstr_p_fd(char *s, int fd);
+int		ft_putnbr_p_fd(int n, int fd);
+int		ft_putnbrfforuinput_fd(unsigned int n, int fd);
+int		ft_hexaprint(unsigned long long nbr, char c);
+int		ft_voidptrwrite(unsigned long long input);
 
 //get_next_line
 
