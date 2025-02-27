@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 13:06:04 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:29:40 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ void	map_texture_charge(t_map *map, int y, int x)
 		mlx_image_to_window(map->wind, map->img.p_i, x * PXL, y * PXL);
 	else
 	{
-		if (map->coin_c != 0)
-			mlx_image_to_window(map->wind, map->img.exit_c_i, x * PXL,
-				y * PXL);
-		else
-			mlx_image_to_window(map->wind, map->img.exit_o_i, x * PXL,
-				y * PXL);
+		mlx_image_to_window(map->wind, map->img.exit_c_i, x * PXL, y * PXL);
+		map->exity = y;
+		map->exitx = x;
 	}
 	if (map->map[y][x + 1])
 		map_texture_charge(map, y, x + 1);
@@ -65,7 +62,17 @@ void	map_texture_charge(t_map *map, int y, int x)
 
 void	a_move_map_charge(t_map *m, int ye, int xe)
 {
-	mlx_image_to_window(m->wind, m->img.ti_i, m->p.x * PXL, m->p.y * PXL);
+	if (m->coin_c == 0)
+		mlx_image_to_window(m->wind, m->img.exit_o_i, m->p.x * PXL,
+			m->p.y * PXL);
+	if (m->p.x == m->exitx && m->p.y == m->exity)
+	{
+		mlx_image_to_window(m->wind, m->img.exit_c_i, m->p.x * PXL,
+			m->p.y * PXL);
+		m->map[m->exitx][m->exity] = 'E';
+	}
+	else
+		mlx_image_to_window(m->wind, m->img.ti_i, m->p.x * PXL, m->p.y * PXL);
 	mlx_image_to_window(m->wind, m->img.p_i, xe * PXL, ye * PXL);
 	m->moves++;
 	ft_printf("Movements made: %d\n", 1, m->moves);

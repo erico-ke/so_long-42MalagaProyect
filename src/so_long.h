@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 13:05:43 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:15:59 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_map
 	t_img		img;
 	t_p			p;
 	int			exit;
+	int			exity;
+	int			exitx;
 	int			exit_c;
 	int			coin;
 	int			coin_c;
