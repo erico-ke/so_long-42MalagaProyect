@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 12:39:32 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:06:04 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,10 @@ int	image_init(t_map *map)
 		map->img.exit_o_i = mlx_texture_to_image(map->wind, map->img.exit_o);
 		map->img.p_i = mlx_texture_to_image(map->wind, map->img.p);
 		map->img.ti_i = mlx_texture_to_image(map->wind, map->img.tile);
-		mlx_delete_texture(map->img.coll);
-		mlx_delete_texture(map->img.wall);
-		mlx_delete_texture(map->img.exit_c);
-		mlx_delete_texture(map->img.exit_o);
-		mlx_delete_texture(map->img.p);
-		mlx_delete_texture(map->img.tile);
+		textures_deleter(map);
 		return (EXIT_SUCCESS);
 	}
+	textures_deleter(map);
 	return (EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:55:14 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 12:39:17 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:05:18 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,20 @@ int	does_textures_exist(t_map *m)
 		|| !m->img.p || !m->img.tile)
 		return (print_error("Textures file opening failed."));
 	return (EXIT_SUCCESS);
+}
+
+void	textures_deleter(t_map *map)
+{
+	if (map->img.coll)
+		mlx_delete_texture(map->img.coll);
+	if (map->img.wall)
+		mlx_delete_texture(map->img.wall);
+	if (map->img.exit_c)
+		mlx_delete_texture(map->img.exit_c);
+	if (map->img.exit_o)
+		mlx_delete_texture(map->img.exit_o);
+	if (map->img.p)
+		mlx_delete_texture(map->img.p);
+	if (map->img.tile)
+		mlx_delete_texture(map->img.tile);
 }
