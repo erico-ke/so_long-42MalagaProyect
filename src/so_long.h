@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 12:21:00 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:39:17 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_p
 
 typedef struct s_img
 {
-	mlx_texture_t	*collectible;
+	mlx_texture_t	*coll;
 	mlx_texture_t	*wall;
 	mlx_texture_t	*exit_c;
 	mlx_texture_t	*exit_o;

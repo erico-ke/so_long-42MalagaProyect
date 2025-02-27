@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 12:21:39 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:39:32 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	image_init(t_map *map)
 {
-	map->img.collectible = mlx_load_png("./textures/Egg_item.png");
+	map->img.coll = mlx_load_png("./textures/Egg_item.png");
 	map->img.wall = mlx_load_png("./textures/Water.png");
 	map->img.exit_c = mlx_load_png("./textures/GoldMine_Inactive.png");
 	map->img.exit_o = mlx_load_png("./textures/GoldMine_Active.png");
@@ -22,19 +22,19 @@ int	image_init(t_map *map)
 	map->img.tile = mlx_load_png("./textures/floor.png");
 	if (does_textures_exist(map) == EXIT_SUCCESS)
 	{
-		map->img.collect_i = mlx_texture_to_image(map->wind, map->img.collectible);
+		map->img.collect_i = mlx_texture_to_image(map->wind, map->img.coll);
 		map->img.wall_i = mlx_texture_to_image(map->wind, map->img.wall);
 		map->img.exit_c_i = mlx_texture_to_image(map->wind, map->img.exit_c);
 		map->img.exit_o_i = mlx_texture_to_image(map->wind, map->img.exit_o);
 		map->img.p_i = mlx_texture_to_image(map->wind, map->img.p);
 		map->img.ti_i = mlx_texture_to_image(map->wind, map->img.tile);
-		mlx_delete_texture(map->img.collectible);
+		mlx_delete_texture(map->img.coll);
 		mlx_delete_texture(map->img.wall);
 		mlx_delete_texture(map->img.exit_c);
 		mlx_delete_texture(map->img.exit_o);
 		mlx_delete_texture(map->img.p);
 		mlx_delete_texture(map->img.tile);
-		return (EXIT_SUCCESS);	
+		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);
 }

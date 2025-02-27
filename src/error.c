@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:55:14 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 12:24:49 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:39:17 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_all(t_map *map)
 
 int	does_textures_exist(t_map *m)
 {
-	if (!m->img.collectible || !m->img.wall || !m->img.exit_c || !m->img.exit_o
+	if (!m->img.coll || !m->img.wall || !m->img.exit_c || !m->img.exit_o
 		|| !m->img.p || !m->img.tile)
 		return (print_error("Textures file opening failed."));
 	return (EXIT_SUCCESS);
