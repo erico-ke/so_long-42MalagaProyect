@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/26 17:33:59 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:21:00 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		main(int argc, char **argv);
 int		print_error(char *ret);
 void	the_freer(char	**free_me);
 void	free_all(t_map *map);
+int		does_textures_exist(t_map *m);
 
 int		map_control(t_map *map, char *map_input);
 void	flood_fill(t_map *map, int y, int x);
