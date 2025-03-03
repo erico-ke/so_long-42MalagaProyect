@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/03/03 11:17:31 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:12:53 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	a_move_map_charge(t_map *m, int ye, int xe)
 	{
 		mlx_image_to_window(m->wind, m->img.exit_c_i, m->p.x * PXL,
 			m->p.y * PXL);
-			m->map[m->exitx][m->exity] = 'E';
-		}
-		else
+		m->map[m->exitx][m->exity] = 'E';
+	}
+	else
 		mlx_image_to_window(m->wind, m->img.ti_i, m->p.x * PXL, m->p.y * PXL);
 	if (m->coin_c == 0)
 		mlx_image_to_window(m->wind, m->img.exit_o_i, m->exitx * PXL,
