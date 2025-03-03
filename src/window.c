@@ -6,13 +6,13 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 14:29:40 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:09:31 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	image_init(t_map *map)
+static int	image_init(t_map *map)
 {
 	map->img.coll = mlx_load_png("./textures/Egg_item.png");
 	map->img.wall = mlx_load_png("./textures/Water.png");
@@ -35,7 +35,7 @@ int	image_init(t_map *map)
 	return (EXIT_FAILURE);
 }
 
-void	map_texture_charge(t_map *map, int y, int x)
+static void	map_texture_charge(t_map *map, int y, int x)
 {
 	if (map->map[y][x] == '1')
 		mlx_image_to_window(map->wind, map->img.wall_i, x * PXL, y * PXL);

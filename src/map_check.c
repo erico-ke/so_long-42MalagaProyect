@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/26 17:20:21 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:08:17 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	is_map_valid(t_map *map, char *input)
 	return (EXIT_SUCCESS);
 }
 
-void	flood_fill(t_map *map, int y, int x)
+static void	flood_fill(t_map *map, int y, int x)
 {
 	if (y < 0 || x < 0 || y >= map->height || x >= map->width)
 	{

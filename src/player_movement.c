@@ -6,13 +6,13 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:16:31 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 11:31:58 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:09:00 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_p_y(t_map *map, int y, int x, char dir)
+static void	move_p_y(t_map *map, int y, int x, char dir)
 {
 	if (dir == 'w' && map->map[y - 1][x] != '1')
 	{
@@ -38,7 +38,7 @@ void	move_p_y(t_map *map, int y, int x, char dir)
 	}
 }
 
-void	move_p_x(t_map *map, int y, int x, char dir)
+static void	move_p_x(t_map *map, int y, int x, char dir)
 {
 	if (dir == 'a' && map->map[y][x - 1] != '1')
 	{

@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 14:15:59 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:08:12 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		does_textures_exist(t_map *m);
 void	textures_deleter(t_map *map);
 
 int		map_control(t_map *map, char *map_input);
-void	flood_fill(t_map *map, int y, int x);
 int		self_map_read(t_map *map);
 void	map_list_init(t_map *map);
 
