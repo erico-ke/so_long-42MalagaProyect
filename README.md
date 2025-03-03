@@ -37,6 +37,6 @@ El objetivo principal de **So_Long** es desarrollar un juego en 2D con los sigui
 
 2. Navegar al directorio del proyecto, compilar el proyecto y ejecutarlo.
 ```
-  cd so_long;
-  make
+  cd so_long ;
+  make ;
   ./so_long maps/<map_file.ber>
