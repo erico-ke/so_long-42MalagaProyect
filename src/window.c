@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/03/03 11:09:31 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:17:31 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ static void	map_texture_charge(t_map *map, int y, int x)
 
 void	a_move_map_charge(t_map *m, int ye, int xe)
 {
-	if (m->coin_c == 0)
-		mlx_image_to_window(m->wind, m->img.exit_o_i, m->p.x * PXL,
-			m->p.y * PXL);
 	if (m->p.x == m->exitx && m->p.y == m->exity)
 	{
 		mlx_image_to_window(m->wind, m->img.exit_c_i, m->p.x * PXL,
 			m->p.y * PXL);
-		m->map[m->exitx][m->exity] = 'E';
-	}
-	else
+			m->map[m->exitx][m->exity] = 'E';
+		}
+		else
 		mlx_image_to_window(m->wind, m->img.ti_i, m->p.x * PXL, m->p.y * PXL);
+	if (m->coin_c == 0)
+		mlx_image_to_window(m->wind, m->img.exit_o_i, m->exitx * PXL,
+			m->exity * PXL);
 	mlx_image_to_window(m->wind, m->img.p_i, xe * PXL, ye * PXL);
 	m->moves++;
 	ft_printf("Movements made: %d\n", 1, m->moves);
