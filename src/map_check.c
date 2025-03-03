@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/03/03 11:08:17 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:06:26 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_map_ber(char *input)
 		i++;
 		j++;
 		if (input[i] != str[j] || input[i - j] != str[0])
-			return (print_error("Incorrect map format: <map>.ber"));
+			return (print_error("Error:\n	Incorrect map format: <map>.ber"));
 	}
 	return (EXIT_SUCCESS);
 }
@@ -42,10 +42,10 @@ static int	is_map_valid(t_map *map, char *input)
 	fd = open(input, O_RDONLY);
 	line = NULL;
 	if (fd < 0)
-		return (print_error("Map open error"));
+		return (print_error("Error:\n	Map open error"));
 	tmp = get_next_line(fd);
 	if (!tmp)
-		return (print_error("Map read error"));
+		return (print_error("Error:\n	Map read error"));
 	while (tmp != NULL)
 	{
 		line = ft_strjoin_g(line, tmp);
@@ -129,9 +129,9 @@ int	map_control(t_map *map, char *map_input)
 	map_border_check(map);
 	if (map->p_num != 1 || map->coin != map->coin_c || map->exit_c != 1
 		|| map->exit != 1 || map->null_check > 0 || map->p_c != 1)
-		return (print_error("Invalid map."));
+		return (print_error("Error:\n	Invalid map."));
 	if (map->coin < 1)
-		return (print_error("Invalid map."));
+		return (print_error("Error:\n	Invalid map."));
 	return (EXIT_SUCCESS);
 }
 

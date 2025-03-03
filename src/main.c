@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 12:56:15 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:06:13 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	main(int argc, char **argv)
 	t_map	*map;
 
 	if (argc != 2)
-		return (print_error("Please insert one argument, just one."));
+		return (print_error("Error:\n	Please insert one argument, just one."));
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
-		return (print_error("Malloc failed."));
+		return (print_error("Error:\n	Malloc failed."));
 	if (map_control(map, argv[1]) == EXIT_FAILURE)
 	{
 		free_all(map);

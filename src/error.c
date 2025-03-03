@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:55:14 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/27 13:05:18 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:04:54 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	does_textures_exist(t_map *m)
 {
 	if (!m->img.coll || !m->img.wall || !m->img.exit_c || !m->img.exit_o
 		|| !m->img.p || !m->img.tile)
-		return (print_error("Textures file opening failed."));
+		return (print_error("Error:\n	Textures file opening failed."));
 	return (EXIT_SUCCESS);
 }
 
