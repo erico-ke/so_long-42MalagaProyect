@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/03/03 12:06:26 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:16:47 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,3 @@ int	map_control(t_map *map, char *map_input)
 		return (print_error("Error:\n	Invalid map."));
 	return (EXIT_SUCCESS);
 }
-
-//NO OLVIDAR QUE COLECCIONABLES TIENEN QUE SER >= 1

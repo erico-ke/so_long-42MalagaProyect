@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/03/03 12:12:20 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:16:36 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,3 @@ int	main(int argc, char **argv)
 	free_all(map);
 	return (EXIT_SUCCESS);
 }
-
-/* 
-COSAS A AGREGAR:
-que el player no se coma la salida...
-acortar lineas muy largas
-*/
